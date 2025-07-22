@@ -53,6 +53,6 @@ const AddUserForm = ({ onUserAdded, loading }) => {
       </Box>
     </Paper>
   );
-};bo
+};
 
 export default AddUserForm;
