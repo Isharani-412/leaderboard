@@ -19,39 +19,92 @@ const AddUserForm = ({ onUserAdded, loading }) => {
   };
 
   return (
-    <Paper elevation={3} className="p-3 mb-3 bg-dark text-light">
-      <Typography variant="h6" gutterBottom className="text-light">
-        Add New User
-      </Typography>
-      <Box component="form" onSubmit={handleSubmit}>
-        <TextField
-          fullWidth
-          label="User Name"
-          variant="outlined"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-          margin="normal"
-          disabled={loading}
-          className="bg-light"
-        />
-        <Box className="mt-2">
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            disabled={!userName.trim() || loading}
-            className="bg-primary text-white"
-          >
-            {loading ? 'Adding...' : 'Add User'}
-          </Button>
-        </Box>
-        {error && (
-          <Alert severity="error" className="mt-2 bg-danger text-white">
-            {error}
-          </Alert>
-        )}
-      </Box>
-    </Paper>
+    <Paper
+  elevation={3}
+  sx={{
+    p: 3,
+    mb: 3,
+    background: 'linear-gradient(to right, #fce4ec, #f8bbd0)', // Light pink gradient
+    borderRadius: 2,
+  }}
+>
+  <Typography variant="h6" gutterBottom sx={{ color: '#4a0033', fontWeight: '600' }}>
+    Add New User
+  </Typography>
+
+  <Box component="form" onSubmit={handleSubmit}>
+    <TextField
+      fullWidth
+      label="User Name"
+      variant="outlined"
+      value={userName}
+      onChange={(e) => setUserName(e.target.value)}
+      margin="normal"
+      disabled={loading}
+      sx={{
+        backgroundColor: '#fff',
+        borderRadius: 1,
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: '#ba68c8', // purple border
+          },
+          '&:hover fieldset': {
+            borderColor: '#ab47bc',
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#4a0033', // dark purple on focus
+            borderWidth: '2px',
+          },
+        },
+        '& .MuiInputLabel-root': {
+          color: '#ba68c8',
+          fontWeight: 500,
+          '&.Mui-focused': {
+            color: '#4a0033', // dark purple label on focus
+          },
+        },
+      }}
+    />
+
+    <Box className="mt-2">
+      <Button
+        type="submit"
+        variant="contained"
+        disabled={!userName.trim() || loading}
+        sx={{
+          display: 'inline-flex',
+          px: 3,
+          py: 1,
+          background: 'linear-gradient(to right, #ec407a, #ab47bc)',
+          color: 'white',
+          fontWeight: 600,
+          borderRadius: '9999px',
+          textTransform: 'none',
+          '&:hover': {
+            background: 'linear-gradient(to right, #d81b60, #8e24aa)',
+          },
+        }}
+      >
+        {loading ? 'Adding...' : 'Add User'}
+      </Button>
+    </Box>
+
+    {error && (
+      <Alert
+        severity="error"
+        sx={{
+          mt: 2,
+          backgroundColor: '#ffebee',
+          color: '#b71c1c',
+          borderLeft: '5px solid #e53935',
+        }}
+      >
+        {error}
+      </Alert>
+    )}
+  </Box>
+</Paper>
+
   );
 };
 
